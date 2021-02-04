@@ -3,7 +3,7 @@ import React from "react";
 export default function Problem() {
   return (
     <>
-      <h1>Problem!</h1>
+      <h1>404!</h1>
     </>
   );
 }
@@ -15,9 +15,10 @@ const pTimeout = () =>
     }, 3000);
   });
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   await pTimeout();
-  const error = new Error("Generic");
-  console.log({ level: "error", message: error });
-  throw error;
+  console.log({ level: "error", message: new Error("NotFound") });
+  return {
+    notFound: true,
+  };
 };
